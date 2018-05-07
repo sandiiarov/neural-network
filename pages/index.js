@@ -1,43 +1,46 @@
 import React from 'react';
-import { times } from 'ramda';
-import styled from 'styled-components';
-import {
-  create,
-  add,
-  subtract,
-  multiply,
-  divide,
-  product,
-  transpose,
-  map,
-  print,
-} from '../lib/matrix';
-import Matrix from '../components/Matrix';
+// import styled from 'styled-components';
+import * as nn from '../lib/neuralNetwork';
+// import Matrix from '../components/Matrix';
 
-const random = times(() => Math.floor(Math.random() * 10));
+const net = nn.create({ net: [3, 3, 3, 2], bias: 1 });
 
-const m1 = create(random(6), [2, 3]);
-const m2 = create(random(6), [3, 2]);
+const data = [{ input: [1, 1, 1], output: [1, 1] }];
 
-const m3 = map(v => v + 1)(m1);
+nn.train(data)(net);
 
-print(m3);
-
-const result = product(m1)(m2);
-
-const IndexPageWrapper = styled('div')`
-  display: flex;
-  align-items: center;
-`;
+// const Wrapper = styled('div')`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
+//
+// const Title = styled('div')`
+//   text-transform: uppercase;
+//   color: #434343;
+// `;
 
 const IndexPage = () => (
-  <IndexPageWrapper>
-    <Matrix matrix={m1.flattenWithKeys} cols={m1.cols} />
-    +
-    <Matrix matrix={m2.flattenWithKeys} cols={m2.cols} />
-    =
-    <Matrix matrix={result.flattenWithKeys} cols={result.cols} />
-  </IndexPageWrapper>
+  <React.Fragment>
+    {/* <Wrapper>
+      <Title>input to hidden weights</Title>
+      <Matrix
+        matrix={net.weight.inputHidden.flattenWithKeys}
+        cols={net.weight.inputHidden.cols}
+      />
+    </Wrapper>
+    <Wrapper>
+      <Title>hidden to output weights</Title>
+      <Matrix
+        matrix={net.weight.hiddenOutput.flattenWithKeys}
+        cols={net.weight.hiddenOutput.cols}
+      />
+    </Wrapper>
+    <Wrapper>
+      <Title>output</Title>
+      <Matrix matrix={output.flattenWithKeys} cols={output.cols} />
+    </Wrapper> */}
+  </React.Fragment>
 );
 
 export default IndexPage;
