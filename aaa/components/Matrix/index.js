@@ -1,5 +1,4 @@
 import React from 'react';
-import { map } from 'ramda';
 import styled from 'styled-components';
 
 const Wrapper = styled('div')`
@@ -38,9 +37,11 @@ const Item = styled('div')`
   padding: 2px;
 `;
 
-const Matrix = ({ matrix, cols }) => (
-  <Wrapper cols={cols}>
-    {map(({ id, value }) => <Item key={id}>{value}</Item>)(matrix)}
+const Matrix = ({ tensor }) => (
+  <Wrapper cols={tensor.shape[0]}>
+    {Array.from(tensor.dataSync()).map(value => (
+      <Item key={value}>{value}</Item>
+    ))}
   </Wrapper>
 );
 
