@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { injectGlobal } from 'styled-components';
-import App from './App';
+import Photo from './examples/Photo/v2';
 
 // eslint-disable-next-line
 injectGlobal`
@@ -24,4 +24,4 @@ const root = document.createElement('div');
 
 if (document.body) document.body.appendChild(root);
 
-render(<App />, root);
+render(<Photo />, root);

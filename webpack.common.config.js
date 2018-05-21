@@ -45,6 +45,7 @@ const development = R.compose(
       contentBase: 'src',
       stats: 'errors-only',
       historyApiFallback: true,
+      port: 3000,
     })
   )
 );
